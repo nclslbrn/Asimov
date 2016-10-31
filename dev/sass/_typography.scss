@@ -1,0 +1,134 @@
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+
+@include font-face('roboto-regular', '../fonts/roboto-regular-webfont', null, null, woff woff2);
+
+@include font-face('roboto-italic', '../fonts/roboto-italic-webfont', null, null, woff woff2);
+
+@include font-face('roboto-black', '../fonts/roboto-black-webfont', null, null, woff woff2);
+
+@include font-face('inconsolata-medium', '../fonts/inconsolata-webfont', null, null, woff woff2);
+
+
+
+/* Type scale */
+
+$increment_ratio: 1.618;
+
+$base-font-size: 16px;
+$base-line-height: 1.618 * $base-font-size;
+
+$type-settings: (
+  -1: (
+    font-size: ($base-font-size * $increment_ratio) - $increment_ratio ,
+    line-height: $base-line-height
+  ),
+  0: (
+    font-size: $base-font-size,
+    line-height: $base-line-height
+  ),
+  1: (
+    font-size: $base-font-size * $increment_ratio,
+    line-height: $base-line-height * 2
+  ),
+  2: (
+    font-size: $base-font-size * $increment_ratio * $increment_ratio,
+    line-height: $base-line-height * 2
+  )
+);
+
+@function type-scale($level) {
+  @return map-get(
+    map-get($type-settings, $level), 'font-size');
+}
+
+@function line-height($level) {
+  @return map-get(
+    map-get($type-settings, $level), 'line-height');
+}
+
+@mixin type-setting($level) {
+  font-size: type-scale($level);
+  line-height: line-height($level);
+}
+
+h1 {
+  @include type-setting(2);
+	font-family: 'roboto-black';
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 1 * $base-line-height 0;
+}
+
+h2 {
+  @include type-setting(1);
+	font-family: 'roboto-regular';
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 4px;
+}
+
+body, p, a, pre, abr {
+  @include type-setting(0);
+	font-family: 'inconsolata-medium';
+  margin: 0 0 $base-line-height 0;
+}
+
+select {
+	-webkit-appearance: none;
+	@include type-setting(1);
+	font-family: 'roboto-regular';
+	background: #fefefe;
+  border: 1px solid #cdcdcd;
+	border-radius: 2px;
+	padding: 4px 16px;
+	width: 350px;
+	background-image: url(../img/arrows.png);
+	background-position: 320px center;
+	background-repeat: no-repeat;
+}

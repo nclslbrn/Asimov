@@ -1,0 +1,20 @@
+# OS GENERATED FILES #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# DATA FILES #
+##############
+robot-series.txt/*
+robot-serie.json/*
+
+# COMPILED / MINIFIED FILES #
+prod/*
+
+# NODE MODULE & SASS CACHE #
+.sass-cache/*
+node_modules/*

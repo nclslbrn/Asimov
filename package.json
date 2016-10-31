@@ -1,0 +1,33 @@
+{
+  "name": "Asimov",
+  "version": "1.0.0",
+  "description": "Digital & artistic project. Data viz of the Robot Series",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "author": "Nicolas Lebrun",
+  "license": "GNU V3",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nclslbrn/Asimov.git"
+  }
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gridle": "^2.0.48",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-jshint": "^2.0.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.1.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.9",
+    "jshint": "^2.9.3"
+  }
+}
