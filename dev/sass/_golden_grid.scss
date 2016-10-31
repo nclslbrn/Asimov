@@ -1,0 +1,84 @@
+/**
+ * Based on http://gld.chadlindemann.com/
+ * a grid with golden ratio
+ */
+
+$golden: 1.618;
+$col_num: 10;
+
+$base:	100%;
+
+$gld10:	$base / $golden;
+$gld9:	$base - $gld10;
+$gld8:	$gld9 / $golden;
+$gld7:	$gld9 - $gld8;
+$gld6:	$gld7 / $golden;
+$gld5:	$gld7 - $gld6;
+$gld4:	$gld5 / $golden;
+$gld3:	$gld5 - $gld4;
+$gld2:	$gld3 / $golden;
+$gld1:	$gld3 - $gld2;
+
+@mixin golden-col( $size )
+{
+  @if ( $size == 10 ) {
+
+    width:	$base / $golden;
+  }
+  @if ($size == 9 ) {
+
+    width:	$base - $gld10;
+  }
+  @if ( $size == 8 ) {
+
+    width:	$gld9 / $golden;
+  }
+  @if ( $size == 7 ) {
+
+    width:	$gld9 - $gld8;
+  }
+  @if ( $size == 6 ) {
+
+    width:	$gld7 / $golden;
+  }
+  @if ( $size == 5 ) {
+
+    width:	$gld7 - $gld6;
+  }
+  @if ( $size == 4 ) {
+
+    width:	$gld5 / $golden;
+  }
+  @if ( $size == 3 ) {
+
+    width:	$gld5 - $gld4;
+  }
+  @if ( $size == 2 ) {
+
+    width:	$gld3 / $golden;
+  }
+  @if ( $size == 1 ) {
+
+    width:	$gld3 - $gld2;
+  }
+}
+
+@for $i from 1 through $col_num {
+
+  .gold-#{$i}
+  {
+    @include golden-col($i);
+  }
+}
+[class*='gold-']{
+  display: inline-block;
+  float: left;
+}
+
+.large	{ width: $gld10 }
+.xlarge	{ width: $base - ($gld7 + $gld7) }
+.med	{ width: $gld9 }
+.small	{ width: $gld8 }
+.xsmall	{ width: $gld7 }
+
+.full, header, footer, .large, .xlarge, .med, .small, .xsmall { padding: $gld4; }
