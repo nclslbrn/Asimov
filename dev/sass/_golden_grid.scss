@@ -19,66 +19,22 @@ $gld3:	$gld5 - $gld4;
 $gld2:	$gld3 / $golden;
 $gld1:	$gld3 - $gld2;
 
-@mixin golden-col( $size )
-{
-  @if ( $size == 10 ) {
-
-    width:	$base / $golden;
-  }
-  @if ($size == 9 ) {
-
-    width:	$base - $gld10;
-  }
-  @if ( $size == 8 ) {
-
-    width:	$gld9 / $golden;
-  }
-  @if ( $size == 7 ) {
-
-    width:	$gld9 - $gld8;
-  }
-  @if ( $size == 6 ) {
-
-    width:	$gld7 / $golden;
-  }
-  @if ( $size == 5 ) {
-
-    width:	$gld7 - $gld6;
-  }
-  @if ( $size == 4 ) {
-
-    width:	$gld5 / $golden;
-  }
-  @if ( $size == 3 ) {
-
-    width:	$gld5 - $gld4;
-  }
-  @if ( $size == 2 ) {
-
-    width:	$gld3 / $golden;
-  }
-  @if ( $size == 1 ) {
-
-    width:	$gld3 - $gld2;
-  }
-}
-
-@for $i from 1 through $col_num {
-
-  .gold-#{$i}
-  {
-    @include golden-col($i);
-  }
-}
-[class*='gold-']{
-  display: inline-block;
-  float: left;
-}
-
 .large	{ width: $gld10 }
 .xlarge	{ width: $base - ($gld7 + $gld7) }
 .med	{ width: $gld9 }
 .small	{ width: $gld8 }
 .xsmall	{ width: $gld7 }
 
-.full, header, footer, .large, .xlarge, .med, .small, .xsmall { padding: $gld4; }
+.full, header, footer, .large, .xlarge, .med, .small, .xsmall { padding: $gld2 $gld4; }
+
+@for $i from 1 through $col_num {
+
+  .gld-col-#{$i}
+  {
+    width: percentage( $i / 10 );
+  }
+}
+[class*='gld-col-']{
+  display: inline-block;
+  float: left;
+}

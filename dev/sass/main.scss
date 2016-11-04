@@ -1,4 +1,4 @@
-@import 'gradient_mixin';
+//@import 'gradient_mixin';
 @import 'typography';
 @import 'golden_grid';
 
@@ -9,17 +9,29 @@
 }
 
 body{
-  @include linear-gradient-b(280deg, #fefefe, #ccc);
+  //@include linear-gradient-b(280deg, #fefefe, #ccc);
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  background: url(../img/cream_dust.png);
   color: #333;
   font-size: 1em;
 }
 
 main {
+  position: relative;
   margin: 0 auto;
+  min-height: 100%;
+  background-color: #fffbfb;
+  background-color: rgba(255,251,255,0.15);
 }
 
 header {
 
+  border-bottom: 1px solid #555;
+  a {
+    text-decoration: none;
+  }
   h2 {
     padding: 0 .618em;
   }
@@ -27,17 +39,21 @@ header {
     position: relative;
     text-align: right;
   }
-  h1::after {
-    position: absolute;
-    display: block;
-    right: 0;
-    content: '';
-    height: 4px;
-    width: 1em;
-    background-color: #555;
-  }
   h2 {
     border-left: 4px solid #555;
   }
+}
 
+.content {
+  display: flex;
+  margin: 0 auto;
+
+  article {
+    min-height: 100%;
+    border-left: 1px solid #555;
+  }
+  .sidebar,
+  article {
+    float: left;
+  }
 }

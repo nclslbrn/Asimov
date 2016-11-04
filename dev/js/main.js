@@ -1,20 +1,18 @@
 $("#select-character li a.active").click(function() {
 
-    var character_id = $($(this).data("character"));
+    var character_id = $(this).data("character");
+    $(this).addClass('selected');
 
-    //console.log( character_id );
+    var request = $.ajax({
 
-    $.ajax({
-      url : 'http://archive.local/asimov-as-sound/function.php/search-data-by-character.php',
-      type : 'GET',
-      data : 'character_id=' + character_id,
+      url : 'function.php/search-data-by-character.php?character=' + character_id,
 
       success : function(output, status) {
 
-        //$('#query-result').html( output );
+        $('#query-result').html( output );
 
         console.log( 'success' );
-        console.log( output );
+        //console.log( output );
       },
 
       error : function(result, status, error) {

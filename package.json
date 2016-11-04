@@ -7,14 +7,14 @@
     "test": "grunt"
   },
   "author": "Nicolas Lebrun",
-  "license": "GNU V3",
+  "license": "GPL-3.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/nclslbrn/Asimov.git"
-  }
+  },
   "devDependencies": {
+    "browser-sync": "^2.17.5",
     "del": "^2.2.2",
-    "gridle": "^2.0.48",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-cache": "^0.4.5",
